@@ -1,1 +1,6 @@
+{10/04/2018} Commit#1 - [Compiles and works on local server] Dynamic Web Project
 
+created, Tomcat 8.5 installed, Maven configured, Packages created,
+Produto class created, Produto Servlet created.
+
+====
