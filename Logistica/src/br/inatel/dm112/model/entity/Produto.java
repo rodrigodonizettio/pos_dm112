@@ -1,11 +1,28 @@
 package br.inatel.dm112.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "produto")
 public class Produto {
 
+	@Id
 	private int numero;
+	
+	@Column(name="status")
 	private String status;
+	
+	@Column(name="nome")
 	private String nome;
+	
+	@Column(name="cpf")
 	private String cpf;
+	
+	@Column(name="email")
 	private String email;
 	
 	public Produto() {
