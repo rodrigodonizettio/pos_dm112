@@ -1,6 +1,25 @@
-{10/04/2018} Commit#1 - [Compiles and works on local server]
+{10/04/2018} Commit#1 - [Compiles and works on local server - Begin of the project]
 
-- Dynamic Web Project created, Tomcat 8.5 installed, Maven configured, Packages created,Produto class created,
-Produto Servlet created.
+- Dynamic Web Project created
+- Tomcat 8.5 installed
+- Maven configured
+- Java Resource Packages created
+- Produto class created
+- Produto Servlet created
 
 ====
+
+{11/04/2018} Commit#2 - [Compiles and works on local server - Insert in local DB]
+
+- Hibernate configured in hibernate.cfg.xml
+- Hibernate dependencies added to Maven in pom.xml
+- Postgre SGBD (pgAdmin3) installed
+- JDBC configured
+- persistence.xml created and configured to work with ProdutoPU (Persistent Unit)
+- EntityManager
+- HibernateUtil created and configured in DAO package
+- ProdutoDAO created and configured in DAO package
+- Produto class updated to work with Hibernate
+- INSERT method was created in ProdutoDAO class and it's working properly.
+
+===
