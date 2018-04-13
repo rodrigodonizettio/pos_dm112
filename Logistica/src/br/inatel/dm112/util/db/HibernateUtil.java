@@ -1,4 +1,4 @@
-package br.inatel.dm112.model.DAO;
+package br.inatel.dm112.util.db;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -10,7 +10,7 @@ public class HibernateUtil {
     private static EntityManagerFactory buildSessionFactory() {
         try {
             // Create the Factory
-            return Persistence.createEntityManagerFactory("produtoPU");
+            return Persistence.createEntityManagerFactory("produtoPU"); //PU: Persistent Unit <configured inside "persistence.xml">
         } catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
             System.err.println("Initial SessionFactory creation failed." + ex);

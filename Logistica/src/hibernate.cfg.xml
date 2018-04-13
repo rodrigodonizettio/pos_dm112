@@ -13,7 +13,7 @@
 		<property name="show_sql">true</property> <!-- Show SQL in console -->
 		<property name="format_sql">true</property> <!-- Show SQL formatted -->
 		
-		<mapping class="br.inatel.dm112.model.Produto"/>
+		<mapping class="br.inatel.dm112.model.entity.Produto"/>
 		
 	</session-factory>
 </hibernate-configuration>
