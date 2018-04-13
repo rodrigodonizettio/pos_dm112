@@ -13,7 +13,7 @@ import br.inatel.dm112.util.db.HibernateUtil;
 
 public class ProdutoDAO {
 	
-	EntityManager produtoDao = HibernateUtil.getEntityManager();
+	EntityManager produtoDAO = HibernateUtil.getEntityManager();
 	Query query;
 	List<Produto> list;
 	Produto produto;
@@ -22,9 +22,14 @@ public class ProdutoDAO {
 	//*** INSERT ***
 	//**************
 	public void insertProduto(Produto produto) {		
-		produtoDao.getTransaction().begin();
-		produtoDao.persist(produto);
-		produtoDao.getTransaction().commit();
+		produtoDAO.getTransaction().begin();
+		produtoDAO.persist(produto);
+		produtoDAO.getTransaction().commit();
+//		query = getSession().createSQLQuery("INSERT INTO TABLA (CAMPO1, CAMPO2) VALUES (:valor1, encripta(:valor2, :key))");
+//		query.setParameter("valor1", valor1);
+//		query.setParameter("valor2", valor2);
+//		query.setParameter("key", key);
+//		query.executeUpdate();
 	}
 	
 	
@@ -35,14 +40,14 @@ public class ProdutoDAO {
 		List produtos = new ArrayList();
 		//
 //		produtoDao.getTransaction().begin(); //APENAS UTILIZADO QUANDO HOUVER ALTERAÇÃO NA DB [SELECT NÃO ALTERA DB]
-		query = produtoDao.createQuery("FROM Produto");
+		query = produtoDAO.createQuery("FROM Produto");
 //		produtoDao.getTransaction().commit(); //APENAS UTILIZADO QUANDO HOUVER ALTERAÇÃO NA DB [SELECT NÃO ALTERA DB]
 		produtos = query.getResultList();
 		return produtos;
 	}
 	
 	public Produto selectProdutoByNumero(int numero) {
-		query = produtoDao.createQuery("FROM Produto WHERE numero = :numero");
+		query = produtoDAO.createQuery("FROM Produto WHERE numero = :numero");
 		query.setParameter("numero", numero);
 		list = query.getResultList();
 		produto = list.get(0);
@@ -56,23 +61,36 @@ public class ProdutoDAO {
 	
 	public static void main(String[] args) {
 		Produto produto = new Produto();
+//		produto.setNumero(2); //ATRIBUTO AGORA É PK e BIG-SERIAL NA DB
+		produto.setStatus("entregue");
+		produto.setNome("nome");
 		produto.setCpf("cpf");
 		produto.setEmail("email");
-		produto.setNome("nome");
-		produto.setNumero(1);
-		produto.setStatus("entregue");
 		
 		ProdutoDAO produtoDAO = new ProdutoDAO();
 		List<Produto> produtos;
 		
-		produtoDAO.insertProduto(produto);
-		System.out.println("PRODUTO NÚMERO-" + produto.getNumero() + " INSERIDO!");
+		//
 		
-		produto = produtoDAO.selectProdutoByNumero(1);
-		System.out.println("PRODUTO-SELECT-BY-NÚMERO: " + produto);
+		try {
+			produtoDAO.insertProduto(produto);
+			System.out.println("PRODUTO NÚMERO-" + produto.getNumero() + " INSERIDO!");
+			System.out.println("--------------------------");
+			
+			produto = produtoDAO.selectProdutoByNumero(5);
+			System.out.println("PRODUTO-SELECT-BY-NÚMERO: " + produto);
+			System.out.println("--------------------------");
+			
+			produtos = produtoDAO.selectAllProdutos();
+			System.out.println("PRODUTO-SELECT-*: " + produtos);
+			System.out.println("--------------------------");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("Encerrando Sistema");
+			System.exit(1);
+		}
 		
-		produtos = produtoDAO.selectAllProdutos();
-		System.out.println("PRODUTO-SELECT-*: " + produtos);
 	}
 
 }

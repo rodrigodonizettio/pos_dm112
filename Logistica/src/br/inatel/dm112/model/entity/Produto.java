@@ -2,15 +2,21 @@ package br.inatel.dm112.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "produto")
 public class Produto {
-
+	
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator="numero_id_seq")
+    @SequenceGenerator(name="numero_id_seq", sequenceName="numero_id_seq", allocationSize=1)
+	@Column(name = "numero")
 	private int numero;
 	
 	@Column(name="status")
