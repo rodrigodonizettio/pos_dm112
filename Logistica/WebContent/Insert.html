@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Logistica - Insert</title>
+</head>
+
+<script type="text/javascript" >
+
+	function submitProduto(){
+	
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "http://localhost:8080/Logistica/ProdutoInsert", true);
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		     // document.getElementById("demo").innerHTML =
+		     // this.responseText;
+		     
+		     	//alert(this.responseText);
+		     	alert("PRODUTO INSERIDO!");
+		    }
+		  };
+		  var nome = document.getElementById("txtNome").value ;
+		  var status = document.getElementById("txtStatus").value ;
+		  var cpf = document.getElementById("txtCpf").value ;
+		  var email = document.getElementById("txtEmail").value ;
+		  var data = nome + ";" + status + ";" + cpf + ";" + email;
+		  xhttp.send(data);
+		
+	}
+	
+	
+	
+	
+	
+
+</script>
+<body>
+
+
+	<form action="">
+		
+		<label>NOME</label>
+		<input type="text" id="txtNome"></input>
+		</br>
+		<label>STATUS</label>
+		<input type="text" id="txtStatus"></input>
+		</br>
+		<label>CPF</label>
+		<input type="text" id="txtCpf"></input>
+		</br>
+		<label>EMAIL</label>
+		<input type="text" id="txtEmail"></input>
+		</br>
+		<input type="button" id="btnSubmit" value="Enviar" onclick="submitProduto()"></input>
+	
+	</form>
+
+</body>
+</html>

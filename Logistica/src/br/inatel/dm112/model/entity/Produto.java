@@ -8,8 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 
 @Entity
+@DynamicUpdate
 @Table(name = "produto")
 public class Produto {
 	
@@ -19,7 +22,7 @@ public class Produto {
 	@Column(name = "numero")
 	private int numero;
 	
-	@Column(name="status")
+	@Column(name="status", updatable = true, nullable = false)
 	private String status;
 	
 	@Column(name="nome")

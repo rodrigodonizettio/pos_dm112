@@ -1,4 +1,4 @@
-package br.inatel.dm112.services;
+
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,21 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.Path;
 
 import br.inatel.dm112.model.DAO.ProdutoDAO;
 
 /**
- * Servlet implementation class ProdutoServlet
+ * Servlet implementation class ProdutoById
  */
-@WebServlet("/ProdutoServlet")
-public class ProdutoServlet extends HttpServlet {
+@WebServlet("/ProdutoById")
+public class ProdutoById extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public ProdutoServlet() {
+    public ProdutoById() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -28,26 +28,7 @@ public class ProdutoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		//
-		ProdutoDAO produtoDAO = new ProdutoDAO();
-		try {
-			response.getWriter().append(produtoDAO.selectAllProdutos().toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-	}
-	
-	@Path("/Produto/{numero}")
-	protected void doGetById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		//
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int numero = Integer.parseInt(request.getParameter("numero"));
 		ProdutoDAO produtoDAO = new ProdutoDAO();
 		try {
@@ -56,7 +37,6 @@ public class ProdutoServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 	}
 
