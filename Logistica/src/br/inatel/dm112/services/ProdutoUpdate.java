@@ -1,10 +1,8 @@
+package br.inatel.dm112.services;
 
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -15,18 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.inatel.dm112.model.DAO.ProdutoDAO;
 import br.inatel.dm112.model.entity.Produto;
+import br.inatel.dm112.util.adapter.MailAdapter;
 
 /**
- * Servlet implementation class ProdutoInsert
+ * Servlet implementation class ProdutoUpdate
  */
-@WebServlet("/ProdutoInsert")
-public class ProdutoInsert extends HttpServlet {
+@WebServlet("/ProdutoUpdate")
+public class ProdutoUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProdutoInsert() {
+    public ProdutoUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,21 +51,30 @@ public class ProdutoInsert extends HttpServlet {
 		response.getWriter().append(qts);
 		System.out.println(dados[0]);
 		System.out.println(dados[1]);
-		System.out.println(dados[2]);
-		System.out.println(dados[3]);
-		
-		Produto produto = new Produto();
-		produto.setNome(dados[0]);
-		produto.setStatus(dados[1]);
-		produto.setCpf(dados[2]);
-		produto.setEmail(dados[3]);
+		int numero = Integer.parseInt(dados[0]);
+		//
 		ProdutoDAO produtoDAO = new ProdutoDAO();
+		Produto produto = new Produto();
 		try {
-			produtoDAO.insertProduto(produto);
+			produtoDAO.updateProdutoStatus(numero, dados[1]);
+		    produto = produtoDAO.selectProdutoByNumero(numero);
+		    
+		    MailAdapter mailSender = new MailAdapter();
+
+			// DATA TO MAILING PRODUCTS
+			String from = "robertorr9@gmail.com";
+			String to = produto.getEmail();
+			String password = "robertodm112";
+			String message = produto.toString();
+
+			// SEND EMAIL
+			mailSender.sendMail(from, password, to, message);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		
 	}
 
