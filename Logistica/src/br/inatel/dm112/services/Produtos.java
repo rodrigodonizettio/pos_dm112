@@ -14,14 +14,14 @@ import br.inatel.dm112.util.request.RequestUtils;
 /**
  * Servlet implementation class Produto
  */
-@WebServlet("/Produto")
-public class Produto extends HttpServlet {
+@WebServlet("/Produtos")
+public class Produtos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Produto() {
+    public Produtos() {
         super();
         // TODO Auto-generated constructor stub
     }

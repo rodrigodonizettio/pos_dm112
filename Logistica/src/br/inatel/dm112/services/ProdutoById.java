@@ -37,7 +37,7 @@ public class ProdutoById extends HttpServlet {
 			ProdutoDAO produtoDAO = new ProdutoDAO();
 			response.getWriter().append(produtoDAO.selectProdutoByNumero(numero).toString());
 		} catch (Exception e) {
-			HttpRequestError.createInternalServerError(null, response);
+			HttpRequestError.createInternalServerError("É necessário passar o número do produto como parâmetro na URL ou o número do produto não existe na DB", response);
 		}
 		
 	}
