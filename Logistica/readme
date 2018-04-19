@@ -1,0 +1,33 @@
+- <<SGBD>> PostgreSQL [Install and Setup for Restore Database]
+
+- Baixar e instalar o pgAdmin3 com as seguintes configurações (USERNAME: postgres ; PASSWORD: abc123 ; IP: localhost ; PORT: 5432).
+- Executar o pgAdmin3
+- Sign-in into default server
+- Right click on Databases -> New Database... -> Name: logistica -> OK
+- Right click on logistica database -> Restore... -> Format: Custom or tar -> Click to browse the Filename and point to the path of the "DB-logistica_BrandNew.tar" file (it was sent attached in the email) -> Restore -> (at this point the DB will be restored from the .tar file and at the end of the process it must return "Exit Code 0". This means that everything is ok) -> Done
+
+%%%
+
+- <<Service>> Rastreamento
+
+-- buscarProduto: [SELECT-BY-NUMERO]: http://localhost:8080/Logistica/ProdutoById?numero=numeroProdutoNaDB
+-- listarProdutos: [SELECT-ALL]: http://localhost:8080/Logistica/Produtos
+
+===
+
+- <<Service>> Expedicao
+
+-- {Não pertence ao serviço de logística, por isso foi apenas criado seu método} produtoDAO.setEstoqueQuantidade(int quantidade);
+-- disponibilizarProduto: [INSERT]: http://localhost:8080/Logistica/Insert.html
+
+===
+
+- <<Service>> Atualizacao
+
+-- atualizarProduto: [UPDATE]: http://localhost:8080/Logistica/Update.html
+
+===
+
+- <<Service>> Mensageiro
+
+-- Ocorre a cada execução dos serviços: [INSERT] e [UPDATE].
